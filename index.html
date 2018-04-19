@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Web GL</title>
+        <style>
+            /* body {
+                background-color: thistle;
+            } */
+            #wpCanvas {
+                border: 1px solid red;
+            }
+            div.hide {
+                display: none;
+            }
+            #btnDiv {
+                text-align: center;
+                padding:20px;
+            }
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+            }
+            /* Button */
+            .btn {
+                padding: 7px 15px;
+                font-size: 32px;
+                font-weight: 200;
+                background-color: white;
+                border: 1px solid #cdcdcd;
+                border-radius: 5px;
+                color: #676767;
+            }
+            .btn:hover {
+                color:#1890ff;
+                border-color: #1890ff;
+            }
+            .btn:focus {
+                outline: 0;
+            }
+            .btn:active {
+                color:#096dd9;
+                border-color: #096dd9;
+            }
+        </style>
+        <script src="./gl-matrix.js"></script>
+        <script src="./loadTex.js"></script>
+        <script src="./LineSegment.js"></script>
+        <script src="./Wall.js"></script>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <div id="btnDiv">
+            <button id="btnSwitch" class="btn" onclick="onSwitchClicked()">Go to Wall Painter</button>
+            <button class="btn" onclick="print(printWalls())">Print walls</button>
+            <button class="btn" onclick="print(printRayOfLightMain())">Print Rays Main</button>
+            <button class="btn" onclick="print(printRayOfLightBulb())">Print Rays Bulb</button>
+        </div>
+        <div id="wpDiv" class="flex-container hide">
+            <canvas id="wpCanvas" width="640" height="480" onmousedown="onWallPainterMouseDown(event)" onmousemove="onWallPainterMouseMove(event)"></canvas>
+        </div>
+        <div id="glDiv" class="flex-container hide">
+            <!-- Canvas element is required to do WEB GL rendering-->
+            <canvas id="glCanvas" width="640" height="480"></canvas>
+            <div id="printWalls" style="font-family: Palatino, serif;margin-left: 10px;"></div>
+        </div>
+        <div id="wpBtns" class="flex-container hide">
+            <button class="btn" onclick="clearWall()">Clear Walls</button>
+        </div>
+        <script type="text/javascript">
+          const print = (str) => {
+            const dv = document.getElementById("printWalls");
+            dv.innerHTML = str;
+          };
+        </script>
+    </body>
+
+</html>
